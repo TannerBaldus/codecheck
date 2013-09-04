@@ -25,15 +25,24 @@ class Checker(object):
 		self.StudentId = StudentId
 		self.problem = problem
 		self.message = ""
+		self.CorrectFlag = True
 
 	def OutputHandler(self, TestInput,StudentCode,ExpectedOut):
 		"""
 
 		"""
 		FullInput = TestInput.extend(StudentCode)
-		RawOut =  sub.Popen(FullInput,stdout = PIPE)
+		RawOut =  sub.Popen( FullInput, stdout = sub.PIPE, stderr = sub.PIPE)
 		StudentOut = []
 
-		for line in RawOut.readlines():
-			StudentOut.appende(line)
+		if RawOut.stderr:
+			for line in RawOut.stderr.readlines():
+				self.message.append(line)
+			return "error"
+
+		else:
+			for line in RawOut.readlines():
+				StudentOut.append(line)
+
+			return "okay" 
 
