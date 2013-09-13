@@ -1,4 +1,5 @@
 import subprocess as sub
+import collections
 class IO:
 
 	def lineReader(self, Input, type):
@@ -42,33 +43,43 @@ class IO:
 		return Input
 
 
-	def OutputHandler(self, TestInput, StudentCode,ExpectedOut,linelimit, message):
+	def OutputHandler(self, TestInput, StudentCode,linelimit, message):
 		"""
 
 		"""
 
 		FullInput = "uliimit -t 2; python" + TestInput  
 		proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stderr = sub.PIPE)
-		StudentOut = []
-
 		out = proc.stdout
 		error = proc.stderr
 
+		studentOut = []
+		errorDetails = []
+		returnValue = collections.namedtuple('Value',['type','output'])
+
 		i = 0
 		for line in out.readlines():
-			StudentOut.append(line)
+			studentOut.append(line)
 			i += 1
 			if i > linelimit:
 				break
-				return "loop"
+			
 
 		if error != None:
+
 			for line in error.readlines():
-				message.append(str(line)
-			return "error"
+
+				if str(line.rstrip()) == "Killed":
+					break
+					return Value('loop','None')
+				else:	
+					errorDetails.append(str(line)
+			
+			return  Value("error",errorDetails)
+
 		
 		else:
-			return StudentOut 
+			return Value("okay",studentOut) 
 
 
 
@@ -89,7 +100,7 @@ class Checker(object):
 
 
 	"""
-	def __init__(self, StudentId, problem, StudentCode):
+	def __init__(self, StudentId, problem, StudentCode,linelimit):
 		"""
 		Initates class with a studentid number, problem.obj file, a StudentCode.py file and 
 		a empty message string.
@@ -97,8 +108,9 @@ class Checker(object):
 		self.StudentCode = StudentCode
 		self.StudentId = StudentId
 		self.problem = problem
-		self.message = ""
-		self.CorrectFlag = 
+		self.linelimit = linelimit
+		self.message = []
+		self.CorrectFlag = True
 
 
 	def compare(expected, given):
@@ -109,4 +121,32 @@ class Checker(object):
 				message.append("Expected: "+str(line))
 				message.append("Given:    "+str(given[i]))
 				i += 1
+
 	def check():
+		problem = self.problem
+
+		IO = IO()
+		for i in range(IO.getCases(problem)):
+
+			caseNumber = i
+			caseInput = IO.getInput(problem, caseNumber)
+			expected = IO.getExpected(problem,caseNumber)
+			codeResult = IO.OutputHandler(caseInput, self.StudentCode,self.linelimit)
+
+			if codeResult == "loop":
+				selage.append("Your script exceeded the cpu time limit.")
+				self.message.append("This is most likley due to an infnite loop.")
+				self.message,append("Check your for and while loops.")
+				self.message("Sometimes you just put a '>' instead of a '<' or forgot to iterate ex: i += 1.")
+				break
+
+			elif codeResult.type == "error":
+				self.e.append("Input: "+ caseInput)
+				self.message.extend(codeResult.output)
+				
+
+			elif codeResult.type == okay:
+				given = codeResult.o
+
+
+			
