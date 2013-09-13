@@ -3,6 +3,10 @@ import collections
 class IO:
 
 	def lineReader(self, Input, type):
+		"""
+		Returns the content of an input (usually a file) into the specfied type
+
+		"""
 
 		if type == "string":
 			output = ""
@@ -23,12 +27,20 @@ class IO:
 
 
 	def getCases(self, ProblemNumber):
-		problem = "problems/"+str(ProblemNumber)
+		"""
+		Returns the number of test cases for a given problem by traversing the directory.
+		Uses lineReader to get number of cases from ProblemX/cases.txt file.
+		"""
+		problem = "problems/"+str(ProblemNumber)     
 		casesFile = open(problem+"/cases.txt","r")
 		cases = self.lineReader(CasesFile,"int")
 		return cases
 
 	def getExpected(ProblemNumber,CaseNumber):
+		"""
+		Returns the expected output of a specfic test case.
+		Uses lineReader to get the expected output from ProblemX/caseX/output.txt file
+		"""
 		problem = "problems/"+str(ProblemNumber)
 		case = "/case"+str(CaseNumber)
 		expectedFile = open(problem+"/"+case+"/output.txt",'r')
@@ -36,6 +48,10 @@ class IO:
 		return expected
 
 	def getInput(ProblemNumber,CaseNumber):
+		"""
+		Returns the input of a specfic test case.
+		Uses lineReader to get the expected output from ProblemX/caseX/input.txt file
+		"""
 		problem = "problems/"+str(ProblemNumber)
 		case = "/case"+str(CaseNumber)
 		inputFile = open(problem+"/"+case+"/input.txt",'r')
@@ -43,8 +59,17 @@ class IO:
 		return Input
 
 
-	def OutputHandler(self, TestInput, StudentCode,linelimit, message):
+	def OutputHandler(self, TestInput, studentCode,linelimit, message):
 		"""
+		Returns a named tuple structed as:
+		(Type, output)
+
+		Where type will be one of the following:
+		error - the student's Code raised a stderr.
+		loop  - the student's code passed the cpu time limit becasue of an inifnite loop.
+		okay  - the student's code created an output normally.
+
+
 
 		"""
 
@@ -72,6 +97,7 @@ class IO:
 				if str(line.rstrip()) == "Killed":
 					break
 					return Value('loop','None')
+
 				else:	
 					errorDetails.append(str(line)
 			
@@ -87,11 +113,7 @@ class Checker(object):
 	"""
 	Summary
 	-------
-	Contains methods to check students code against an expceted output. Multiple expected outputs from multiple text cases are given as a dictonary as a .obj file. The .obj files are read using the pickle module.
-	Each test case (numbered 0 to n) is a key corresponding to a list with input as the first element and the rest of the elements as each line of the excpected output.
-	 	example:
-	 	dict = [0:[input,"hello world", "goodbye cruel world"]]
-
+	
 	
 
 	Methods
@@ -100,17 +122,26 @@ class Checker(object):
 
 
 	"""
-	def __init__(self, StudentId, problem, StudentCode,linelimit):
+	def __init__(self, StudentId, ProblemNumber, sPudentCNode,linelimit):
 		"""
-		Initates class with a studentid number, problem.obj file, a StudentCode.py file and 
-		a empty message string.
-		"""
-		self.StudentCode = StudentCode
+		Initates class with a studentid number, a string as problem number, a path to the student's code file,  
+		an empty list as message, and a boolean as correctFlag.
+
+		Purpose of each variable:
+		studentCode     =>  the path is used to run the Student's code using subprocess.Popen
+		studentId       =>  used to generate a unique completeion token
+		problemNumber   =>  used to get appropriate test cases
+		linelimit		=>  used to specify number of lines of the  Student's code is allowed to produce. (see: ouputhandler)
+		message			=>  each element in the list is a line to be displayed to student.
+		correctFlag		=>  only stays true if the student's code passes each test case.
+
+ 		"""
+		self.studentCode = studentCode
 		self.StudentId = StudentId
-		self.problem = problem
+		self.problemNumber = problemNumber
 		self.linelimit = linelimit
 		self.message = []
-		self.CorrectFlag = True
+		self.correctFlag = True
 
 
 	def compare(expected, given):
@@ -131,7 +162,7 @@ class Checker(object):
 			caseNumber = i
 			caseInput = IO.getInput(problem, caseNumber)
 			expected = IO.getExpected(problem,caseNumber)
-			codeResult = IO.OutputHandler(caseInput, self.StudentCode,self.linelimit)
+			codeResult = IO.OutputHandler(caseInput, self.studentCode,self.linelimit)
 
 			if codeResult == "loop":
 				selage.append("Your script exceeded the cpu time limit.")
