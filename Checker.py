@@ -1,6 +1,9 @@
 import subprocess as sub
 import collections
 class IO:
+	"""
+	
+	"""
 
 	def lineReader(self, Input, type):
 		"""
@@ -118,7 +121,10 @@ class Checker(object):
 
 	Methods
 	--------
-	OutputHandler
+	init
+	compare
+	check
+
 
 
 	"""
@@ -145,6 +151,10 @@ class Checker(object):
 
 
 	def compare(expected, given):
+		"""
+		Takes two lists as args, compares the two line by line and appends diffrences
+		to self.message to be displayedto the student
+		"""
 		message = self.message
 		i = 0
 		for line in expected:
@@ -177,7 +187,39 @@ class Checker(object):
 				
 
 			elif codeResult.type == okay:
-				given = codeResult.o
+				given = codeResult.output
+
+				lenDiff = len(expected) - len(given)
+
+				tooLong = lendiff < 0			## the given output is too long
+				tooShort = lendiff > 0			## the given output is too short
+
+				if tooLong:
+					tail = len(expected)
+					comparableGiven = given[0:tail] 		## makes given the same length as expected
+					leftOver = given[tail:]					## the rest of given output
+
+					self.compare(expected,comparableGiven)	
+
+				elif tooShort:
+					tail = len(expected)
+					comparableExpected = expected[0:tail] 		## makes the expected output the same length as given
+					leftOver = expected[tail:]					## the rest of the expected output
+
+					self.compare(expected,comparableGiven)
+
+				else:
+					self.compare(expected,given)	
+
+
+
+
+
+
+
+
+
+
 
 
 			
