@@ -1,5 +1,5 @@
 import subprocess as sub
-from collections import namedtuple
+import collections
 class IO:
     """
 
@@ -46,7 +46,7 @@ class IO:
         """
         problem = "problems/"+"problem"+str(ProblemNumber)
         case = "/cases/case"+str(CaseNumber)
-        expectedFile = open(problem+"/"+case+"/output.txt",'r')
+        expectedFile = open(problem+case+"/output.txt",'r')
         expected = self.lineReader(expectedFile,"list")
         return expected
 
@@ -56,13 +56,13 @@ class IO:
         Uses lineReader to get the expected output from ProblemX/caseX/input.txt file
         """
         problem = "problems/"+"problem"+str(ProblemNumber)
-        case = "/cases/case"+str(CaseNumber)
+        case = "cases/case"+str(CaseNumber)
         inputFile = open(problem+"/"+case+"/input.txt",'r')
-        Input = self.lineReader(inputFile,"list")
+        Input = self.lineReader(inputFile,"string")
         return Input
 
 
-    def OutputHandler(self, TestInput, studentCode,linelimit, message):
+    def OutputHandler(self, TestInput, studentCode,linelimit):
         """
         Returns a named tuple structed as:
         (Type, output)
@@ -76,7 +76,7 @@ class IO:
 
         """
 
-        FullInput = "ulimit -t 2; python" + str(studentCode)
+        FullInput = "ulimit -t 2; python " + str(studentCode)
 
         ## Run student's code
         proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
@@ -88,7 +88,7 @@ class IO:
 
         studentOut = []
         errorDetails = []
-        returnValue = collections.namedtuple('Value','type output')
+        result = collections.namedtuple('result','type output')
 
 
         ## Put student's code into a list
@@ -96,25 +96,25 @@ class IO:
         for line in stdout:
             studentOut.append(line)
             i += 1
-            if i > linelimit:
-                break
+            ##if i > linelimit:
+                ##return result('loop',None)
+
 
 
         ## Put 	stderr message in a list
-        if stderr != None:
+        if stderr:
+           
 
-            for line in stderr():
+            for line in stderr:
+                errorDetails.append(str(line))
 
-                if str(line.rstrip()) == "Killed":
-                    ## Killed in stderr denotes the Student's Code surpassed the cpu time limit
-                    break
-                    return Value('loop','None')
+            if "Killed" in errorDetails:
+                ## Killed in stderr denotes that the student code exceeding cpu time limit
+                return result("loop", errorDetails)
 
-                else:
-                    errorDetails.append(str(line)
-                    return Value("error",errorDetails)
+            else:
+                return result("error",errorDetails)
 
 
         else:
-            return Value("okay",studentOut)
-            
+            return result("okay",studentOut)
