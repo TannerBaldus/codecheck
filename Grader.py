@@ -1,4 +1,5 @@
 import IOhandler
+import TokenGenerator
 
 
 class Checker(object):
@@ -26,48 +27,54 @@ class Checker(object):
         studentCode     =>  the path is used to run the Student's code using subprocess.Popen
         studentId       =>  used to generate a unique completeion token
         problemNumber   =>  used to get appropriate test cases
-        lineLimit		=>  used to specify number of lines of the  Student's code is allowed to produce. (see: ouputhandler)
-        message			=>  each element in the list is a line to be displayed to student.
+        diffDetails		=>  a list that contains each line of the diffrence between the given and expected ouptuts, i
+                            including errors to be displayed to the student.
+        message         => a list that contains each line of a message to be displayed to the student on wheather they got the 
+                            problem right and the corresponding token.
         correctFlag		=>  only stays true if the student's code passes each test case.
 
         """
         self.studentCode = studentCode
         self.studentId = studentId
         self.problemNumber = problemNumber
+        self.diffDetails = []
         self.message = []
         self.correctFlag = True
 
         ###### Setters and Getters######
-    def getStudentCode(self):
-        """ Returns student code """
-        return self.studentCode
 
-    def getStudentId(self):
+    def get_StudentId(self):
         """ Returns studentId"""
         return self.studentId
 
-    def getStudentCode(self):
+    def get_StudentCode(self):
         """ Returns student code """
         return self.studentCode
 
-    def getProblemNumber(self):
+    def get_problemNumber(self):
         """Returns problem number."""
         return self.problemNumber
 
-    def getMessage(self):
-        """Returns message"""
-        return self.message
+    def get_diffDetails(self):
+        """Returns diffDetails"""
+        return self.diffDetails
 
-    def setMessage(self,Input):
+    def set_diffDetails(self,Input):
         if type(Input) == list:
-            self.message.extend(list)
+            self.diffDetails.extend(list)
         else:
-            self.message.append(Input)
+            self.diffDetails.append(Input)
+
+    def set_message(self):
+        T = TokenGenerator.Token(self.studentId,self.correctFlag)
+        self.message.extend(T.generateToken())
 
 
 
 
-    ##def get
+
+
+
 
 
     def compare(self,expected, given):
@@ -84,7 +91,7 @@ class Checker(object):
                 i += 1
 
     def check(self):
-        problem = self.getProblemNumber()
+        problem = self.get_problemNumber()
         IO = IOhandler.IO()
 
         for i in range(IO.getCases(problem)):
@@ -92,19 +99,19 @@ class Checker(object):
             caseNumber = i
             caseInput = IO.getInput(problem, caseNumber)
             expected = IO.getExpected(problem,caseNumber)
-            codeResult = IO.OutputHandler(caseInput, self.studentCode,self.lineLimit)
+            codeResult = IO.OutputHandler(caseInput, self.studentCode,)
 
             if codeResult.type == "loop":
-                self.setMessage("Message exceeded the cpu time limit.")
-                self.setMessage("This is most likley due to an infnite loop.")
-                self.setMessage("Check your for and while loops.")
-                self.setMessage(("Sometimes you just put a '>' instead of a '<' or forgot to iterate ex: i += 1."))
+                self.set_diffDetails("Message exceeded the cpu time limit.")
+                self.set_diffDetails("This is most likley due to an infnite loop.")
+                self.set_diffDetails("Check your for and while loops.")
+                self.set_diffDetails(("Sometimes you just put a '>' instead of a '<' or forgot to iterate ex: i += 1."))
                 break
 
             elif codeResult.type == "error":
-                self.setMessage("Input: "+ caseInput)
-                self.setMessage("Error:")
-                self.setMessage(codeResult.output)
+                self.set_diffDetails("Input: "+ caseInput)
+                self.set_diffDetails("Error:")
+                self.set_diffDetails(codeResult.output)
                 i += 1
 
 
@@ -128,8 +135,8 @@ class Checker(object):
                         comparableGiven = given[0:tail] 		## makes given the same length as expected
                         leftOver = given[tail:]					## the rest of given output
                         for line in leftOver:
-                            self.setMessage("Expected:  " )
-                            self.setMessage("Given:     "+  str(line))
+                            self.set_diffDetails("Expected:  " )
+                            self.set_diffDetails("Given:     "+  str(line))
 
                         self.compare(expected,comparableGiven)
                         i += 1
@@ -142,14 +149,14 @@ class Checker(object):
                         self.compare(comparableExpected,given)
 
                         for line in leftOver:
-                            self.setMessage("Expected:  "+ line)
-                            self.setMessage("Given:     ")
+                            self.set_diffDetails("Expected:  "+ line)
+                            self.set_diffDetails("Given:     ")
                             i += 1
 
                     else:
                         self.compare(expected,given)
                         i += 1
-
+        self.set_message()
 
 
 

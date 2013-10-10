@@ -62,7 +62,7 @@ class IO:
         return Input
 
 
-    def OutputHandler(self, TestInput, studentCode,linelimit):
+    def OutputHandler(self, TestInput, studentCode):
         """
         Returns a named tuple structed as:
         (Type, output)

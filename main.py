@@ -7,6 +7,6 @@ Student = "tmp/"+f
 C = Grader.Checker("951196832","1",Student)
 C.check()
 for line in C.message:
-	print ">"+str(line)
+	print ">"+str(line.rstrip())
 
 
