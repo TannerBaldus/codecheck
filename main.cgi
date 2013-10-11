@@ -29,9 +29,12 @@ print 'Content-Type: text/html\n'
 print '<html>'
 print '<body>'
 for line in message:
-   print '<p>'+line+'<p>'
+   print '<p>'+"blah"+line+'</p>'
+
 for line in details:
-   print '<p>'+line+'<p>'
+   print '<p>'+"foo"+"</p>"
+   print '<p>'+line+'</p>'
+
 print '<p>%s</p>'
 print '<p>%s</p>'
 print '</body>'
