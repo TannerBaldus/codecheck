@@ -8,5 +8,6 @@ C = Grader.Checker("951196832","1",Student)
 C.check()
 for line in C.message:
 	print ">"+str(line.rstrip())
-
+for line in C.diffDetails:
+	print ">"+str(line.rstrip())
 

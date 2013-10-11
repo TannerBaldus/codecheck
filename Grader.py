@@ -98,6 +98,7 @@ class Checker(object):
 
             caseNumber = i
             caseInput = IO.getInput(problem, caseNumber)
+            self.set_diffDetails("Input: "+str(caseInput))
             expected = IO.getExpected(problem,caseNumber)
             codeResult = IO.OutputHandler(caseInput, self.studentCode,)
 
@@ -130,7 +131,7 @@ class Checker(object):
                     tooLong = lenDiff < 0			## the given output is too long
                     tooShort = lenDiff > 0			## the given output is too short
 
-                    if tooShort:
+                    if tooLong:
                         tail = len(expected)
                         comparableGiven = given[0:tail] 		## makes given the same length as expected
                         leftOver = given[tail:]					## the rest of given output
@@ -141,7 +142,7 @@ class Checker(object):
                         self.compare(expected,comparableGiven)
                         i += 1
 
-                    elif tooLong:
+                    elif tooShort:
                         tail = len(given)
                         comparableExpected = expected[0:tail] 		## makes the expected output the same length as given
                         leftOver = expected[tail:]					## the rest of the expected output
@@ -157,6 +158,7 @@ class Checker(object):
                         self.compare(expected,given)
                         i += 1
         
+        print self.correctFlag
         self.set_message()
 
 
