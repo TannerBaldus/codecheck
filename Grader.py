@@ -158,7 +158,6 @@ class Checker(object):
                         self.compare(expected,given)
                         i += 1
         
-        print self.correctFlag
         self.set_message()
 
 
