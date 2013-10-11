@@ -86,8 +86,8 @@ class Checker(object):
         i = 0
         for line in expected:
             if line != given[i]:
-                set_diffDetails("Expected: "+str(line))
-                set_diffDetails("Given:    "+str(given[i]))
+                self.set_diffDetails("Expected: "+str(line))
+                self.set_diffDetails("Given:    "+str(given[i]))
                 i += 1
 
     def check(self):
