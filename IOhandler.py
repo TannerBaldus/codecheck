@@ -25,7 +25,8 @@ class IO:
         elif type == "list":
             output = []
             for line in Input.readlines():
-                output.append(str(line))
+                line = str(line).rstrip()
+                output.append(line)
             return output
 
 
