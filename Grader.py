@@ -130,7 +130,7 @@ class Checker(object):
                     tooLong = lenDiff < 0			## the given output is too long
                     tooShort = lenDiff > 0			## the given output is too short
 
-                    if tooLong:
+                    if tooShort:
                         tail = len(expected)
                         comparableGiven = given[0:tail] 		## makes given the same length as expected
                         leftOver = given[tail:]					## the rest of given output
@@ -141,7 +141,7 @@ class Checker(object):
                         self.compare(expected,comparableGiven)
                         i += 1
 
-                    elif tooShort:
+                    elif tooLong:
                         tail = len(given)
                         comparableExpected = expected[0:tail] 		## makes the expected output the same length as given
                         leftOver = expected[tail:]					## the rest of the expected output
