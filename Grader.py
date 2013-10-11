@@ -86,8 +86,8 @@ class Checker(object):
         i = 0
         for line in expected:
             if line != given[i]:
-                message.append("Expected: "+str(line))
-                message.append("Given:    "+str(given[i]))
+                set_diffDetails("Expected: "+str(line))
+                set_diffDetails("Given:    "+str(given[i]))
                 i += 1
 
     def check(self):
@@ -105,7 +105,7 @@ class Checker(object):
                 self.set_diffDetails("Message exceeded the cpu time limit.")
                 self.set_diffDetails("This is most likley due to an infnite loop.")
                 self.set_diffDetails("Check your for and while loops.")
-                self.set_diffDetails(("Sometimes you just put a '>' instead of a '<' or forgot to iterate ex: i += 1."))
+                self.set_diffDetails("Sometimes you just put a '>' instead of a '<' or forgot to iterate ex: i += 1.")
                 break
 
             elif codeResult.type == "error":
@@ -156,6 +156,7 @@ class Checker(object):
                     else:
                         self.compare(expected,given)
                         i += 1
+        
         self.set_message()
 
 
