@@ -17,9 +17,10 @@ if fileitem.filename:
    fn = studentid+os.path.basename(fileitem.filename)
    open('/tmp/' + fn, 'wb').write(fileitem.file.read())
    studentCode = "/tmp/"+fn
-   Checker = Checker(studentid,problem,studentCode)
-   message = Checker.message
-   details = Checker.diffDetails
+   C = Grader.Checker(studentid,problem,studentCode)
+   C.check()
+   message = C.message
+   details = C.diffDetails
    
 else:
    message = 'No file was uploaded'
