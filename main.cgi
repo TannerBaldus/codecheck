@@ -30,10 +30,9 @@ print '<html>'
 print '<body>'
 
 for line in message:
-   print '<p>'+"blah"+line+'</p>'
+   print '<p>'+line+'</p>'
 
 for line in details:
-   print '<p>'+"foo"+"</p>"
    print '<p>'+line+'</p>'
 
 print '</body>'
