@@ -16,13 +16,13 @@ if fileitem.filename:
    # directory traversal attacks
    fn = studentid+os.path.basename(fileitem.filename)
 
-      open('/tmp/' + fn, 'wb').write(fileitem.file.read())
-      studentCode = "/tmp/"+fn
-      C = Grader.Checker(studentid,problem,studentCode)
-      C.check()
-      message = C.message
-      message[0] = str(fn)
-      details = C.diffDetails
+   open('/tmp/' + fn, 'wb').write(fileitem.file.read())
+   studentCode = "/tmp/"+fn
+   C = Grader.Checker(studentid,problem,studentCode)
+   C.check()
+   message = C.message
+   message[0] = str(fn)
+   details = C.diffDetails
    
 else:
    message = 'No file was uploaded'
