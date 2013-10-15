@@ -86,8 +86,8 @@ class Checker(object):
         i = 0
         for line in expected:
             if line != given[i]:
-                self.set_diffDetails("Expected: "+str(line))
-                self.set_diffDetails("Given:    "+str(given[i]))
+                self.set_diffDetails("Expected output: "+str(line))
+                self.set_diffDetails("Your code's output:    "+str(given[i]))
                 i += 1
 
     def check(self):
@@ -99,6 +99,7 @@ class Checker(object):
             caseNumber = i
             caseInput = IO.getInput(problem, caseNumber)
             self.set_diffDetails("Input: "+str(caseInput))
+            self.set_diffDetails("---------------------------------------------")
             expected = IO.getExpected(problem,caseNumber)
             codeResult = IO.OutputHandler(caseInput, self.studentCode,)
 
@@ -110,7 +111,6 @@ class Checker(object):
                 break
 
             elif codeResult.type == "error":
-                self.set_diffDetails("Input: "+ caseInput)
                 self.set_diffDetails("Error:")
                 self.set_diffDetails(codeResult.output)
                 i += 1
@@ -136,8 +136,8 @@ class Checker(object):
                         comparableGiven = given[0:tail] 		## makes given the same length as expected
                         leftOver = given[tail:]					## the rest of given output
                         for line in leftOver:
-                            self.set_diffDetails("Expected:  " )
-                            self.set_diffDetails("Given:     "+  str(line))
+                            self.set_diffDetails("Expected Output:  " )
+                            self.set_diffDetails("Your code's output:     "+  str(line))
 
                         self.compare(expected,comparableGiven)
                         i += 1
@@ -151,7 +151,7 @@ class Checker(object):
 
                         for line in leftOver:
                             self.set_diffDetails("Expected:  "+ line)
-                            self.set_diffDetails("Given:     ")
+                            self.set_diffDetails("Your code's output:     ")
                             i += 1
 
                     else:
