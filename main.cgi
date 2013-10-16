@@ -16,6 +16,7 @@ if fileitem.filename:
    # directory traversal attacks
    fn = studentid+os.path.basename(fileitem.filename)
    message = []
+   details =[]
    if ".py" not in fn:
        message.append("That's not a python file")
 
@@ -24,8 +25,7 @@ if fileitem.filename:
       studentCode = "/tmp/"+fn
       C = Grader.Checker(studentid,problem,studentCode)
       C.check()
-      message.append(str(fn))
-      message[0] = str(fn)
+      message = C.message
       details = C.diffDetails
    
 else:
