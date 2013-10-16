@@ -98,6 +98,7 @@ class Checker(object):
 
             caseNumber = i
             caseInput = IO.getInput(problem, caseNumber)
+            self.set_diffDetails("---------------------------------------------")
             self.set_diffDetails("Input: "+str(caseInput))
             self.set_diffDetails("---------------------------------------------")
             expected = IO.getExpected(problem,caseNumber)
