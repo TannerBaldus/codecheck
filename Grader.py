@@ -112,7 +112,7 @@ class Checker(object):
                 break
 
             elif codeResult.type == "error":
-                self.set_diffDetails("Error:")
+                self.set_diffDetails("Your code produced an error:")
                 self.set_diffDetails(codeResult.output)
                 i += 1
 
@@ -151,7 +151,7 @@ class Checker(object):
                         self.compare(comparableExpected,given)
 
                         for line in leftOver:
-                            self.set_diffDetails("Expected:  "+ line)
+                            self.set_diffDetails("Expected Output:  "+ line)
                             self.set_diffDetails("Your code's output:     ")
                             i += 1
 
