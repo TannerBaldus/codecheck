@@ -15,14 +15,17 @@ if fileitem.filename:
    # strip leading path from file name to avoid 
    # directory traversal attacks
    fn = studentid+os.path.basename(fileitem.filename)
-
+   message = []
+   if ".py" not in fn:
+       message.append("pass")
+   details = []
    open('/tmp/' + fn, 'wb').write(fileitem.file.read())
    studentCode = "/tmp/"+fn
-   C = Grader.Checker(studentid,problem,studentCode)
-   C.check()
-   message = C.message
-   message[0] = str(fn)
-   details = C.diffDetails
+   ##C = Grader.Checker(studentid,problem,studentCode)
+   ##C.check()
+   message.append(str(fn))
+   ##message[0] = str(fn)
+   ##details = C.diffDetails
    
 else:
    message = 'No file was uploaded'
