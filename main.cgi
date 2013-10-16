@@ -25,8 +25,7 @@ if fileitem.filename:
       studentCode = "/tmp/"+fn
       C = Grader.Checker(studentid,problem,studentCode)
       C.check()
-      message.append(str(fn))
-      message[0] = str(fn)
+      message = C.message
       details = C.diffDetails
    
 else:
