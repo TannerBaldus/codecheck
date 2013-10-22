@@ -80,10 +80,10 @@ class IO:
         FullInput = "ulimit -t 2; python " + str(studentCode)
 
         ## Run student's code
-        proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
+        proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stdin = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
 
         ## Pass stdout and stderr to variables
-        rawOut = proc.communicate(input=TestInput)	## passes TestInput as std in; returns tuple (stdoutdata, stderrdata)
+        rawOut = proc.communicate(input=TestInput)	## passes TestInput as stdin; returns tuple (stdoutdata, stderrdata)
         stdout = rawOut[0].splitlines()
         stderr = rawOut[1].splitlines()
 
@@ -96,9 +96,7 @@ class IO:
         i = 0
         for line in stdout:
             studentOut.append(line)
-            i += 1
-            ##if i > linelimit:
-                ##return result('loop',None)
+          
 
 
 
