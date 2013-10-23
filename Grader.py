@@ -86,7 +86,7 @@ class Checker(object):
         i = 0
         for line in expected:
             if line != given[i]:
-                self.set_diffDetails("Expected output: blah "+str(line))
+                self.set_diffDetails("Expected output: "+str(line))
                 self.set_diffDetails("Your code's output:    "+str(given[i]))
                 i += 1
 
@@ -135,12 +135,13 @@ class Checker(object):
                     if tooLong:
                         tail = len(expected)
                         comparableGiven = given[0:tail] 		## makes given the same length as expected
-                        leftOver = given[tail:]					## the rest of given output
-                        for line in leftOver:
-                            self.set_diffDetails("Expected Output: too long  " )
+                        leftOver = given[tail:]
+                        self.compare(expected,comparableGiven)					
+                        for line in leftOver:## the rest of given output
+                            self.set_diffDetails("Expected Output: End of Output  " )
                             self.set_diffDetails("Your code's output:     "+  str(line))
 
-                        self.compare(expected,comparableGiven)
+                        
                         i += 1
 
                     elif tooShort:
@@ -151,8 +152,8 @@ class Checker(object):
                         self.compare(comparableExpected,given)
 
                         for line in leftOver:
-                            self.set_diffDetails("Expected Output: too short  "+ line)
-                            self.set_diffDetails("Your code's output:     ")
+                            self.set_diffDetails("Expected Output: "+ line)
+                            self.set_diffDetails("Your code's output:      ")
                             i += 1
 
                     else:
