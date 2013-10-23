@@ -107,6 +107,7 @@ class Checker(object):
             codeResult = IO.OutputHandler(caseInput, self.studentCode,)
 
             if codeResult.type == "loop":
+		self.correctFlag = False
                 self.set_diffDetails("Message exceeded the cpu time limit.")
                 self.set_diffDetails("This is most likley due to an infnite loop.")
                 self.set_diffDetails("Check your for and while loops.")
@@ -114,6 +115,7 @@ class Checker(object):
                 break
 
             elif codeResult.type == "error":
+		self.correctFlag = False
                 self.set_diffDetails("Your code produced an error:")
                 self.set_diffDetails(codeResult.output)
                 i += 1
