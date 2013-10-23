@@ -61,7 +61,7 @@ class Checker(object):
 
     def set_diffDetails(self,Input):
         if type(Input) == list:
-            self.diffDetails.extend(list)
+            self.diffDetails.extend(Input)
         else:
             self.diffDetails.append(Input)
 
