@@ -45,9 +45,9 @@ class IO:
         Returns the expected output of a specfic test case.
         Uses lineReader to get the expected output from problemX/cases/caseX/output.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)
-        case = "/cases/case"+str(CaseNumber)
-        expectedFile = open(problem+case+"/output.txt",'r')
+        problem = "problems/"+"problem"+str(ProblemNumber)+"/"
+        filename = "output"+str(CaseNumber)+".txt"
+        expectedFile = open(problem+filename,'r')
         expected = self.lineReader(expectedFile,"list")
         return expected
 
@@ -56,9 +56,9 @@ class IO:
         Returns the input of a specfic test case.
         Uses lineReader to get the expected output from ProblemX/caseX/input.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)
-        case = "cases/case"+str(CaseNumber)
-        inputFile = open(problem+"/"+case+"/input.txt",'r')
+        problem = "problems/"+"problem"+str(ProblemNumber)+"/"
+        filename = "input"+str(CaseNumber)+".txt"
+        inputFile = open(problem+filename,'r')
         Input = self.lineReader(inputFile,"string")
         return Input
 
@@ -93,7 +93,6 @@ class IO:
 
 
         ## Put student's code into a list
-        i = 0
         for line in stdout:
             studentOut.append(line)
           
