@@ -90,6 +90,8 @@ class Checker(object):
                 self.set_diffDetails("Your code's output:    "+str(given[i]))
                 i += 1
 
+
+
     def check(self):
         problem = self.get_problemNumber()
         IO = IOhandler.IO()
@@ -121,6 +123,7 @@ class Checker(object):
                 given = codeResult.output
 
                 if given == expected:
+                    self.compare(expected,given)
                     i = i +1
 
                 else:
