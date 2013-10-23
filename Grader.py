@@ -123,9 +123,9 @@ class Checker(object):
                 given = codeResult.output
 
                 if given == expected:
-                    for line in expected:
-                        self.set_diffDetails("Expected output: "+str(line))
-                        self.set_diffDetails("Your code's output:    "+str(given[i]))
+                    for j in range(len(expected)):
+                        self.set_diffDetails("Expected output: "+str(expected[j]))
+                        self.set_diffDetails("Your code's output:    "+str(given[j]))
                     i += 1
                 
 
