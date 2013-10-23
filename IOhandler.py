@@ -36,7 +36,7 @@ class IO:
         Uses lineReader to get number of cases from ProblemX/cases.txt file.
         """
         problem = "problems/"+"problem"+str(ProblemNumber)
-        casesFile = open(problem+"/cases/cases.txt","r")
+        casesFile = open(problem+"/cases.txt","r")
         cases = self.lineReader(casesFile,"int")
         return cases
 
