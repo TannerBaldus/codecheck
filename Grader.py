@@ -123,8 +123,11 @@ class Checker(object):
                 given = codeResult.output
 
                 if given == expected:
-                    self.compare(expected,given)
-                    i = i +1
+                    for line in expected:
+                        self.set_diffDetails("Expected output: "+str(line))
+                        self.set_diffDetails("Your code's output:    "+str(given[i]))
+                    i += 1
+                
 
                 else:
                     self.correctFlag = False
