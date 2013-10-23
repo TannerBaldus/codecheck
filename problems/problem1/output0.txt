@@ -1,5 +1,1 @@
-1
-2
-Fizz
-4
-Buzz
+One can simply walk from Isengard to Edoras
