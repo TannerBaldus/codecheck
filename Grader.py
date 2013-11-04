@@ -72,23 +72,51 @@ class Checker(object):
 
 
 
-
-
-
-
-
-    def compare(self,expected, given):
+    def compare(expected, given):
         """
         Takes two lists as args, compares the two line by line and appends diffrences
-        to self.message to be displayedto the student
+        to self.diffDetails to be displayed to the student
         """
-        message = self.message
         i = 0
-        for line in expected:
-            if line != given[i]:
-                self.set_diffDetails("Expected output: "+str(line))
-                self.set_diffDetails("Your code's output:    "+str(given[i]))
+        
+        lenDiff = len(expected) - len(given)
+        tooLong = lenDiff < 0           ## the given output is too long
+        tooShort = lenDiff > 0          ## the given output is too short
+        
+        if lenDiff == 0:
+            for line in expected:
+                if line != given[i]:
+                    self.set_diffDetails("Expected output:    "+str(line))
+                    self.set_diffDetails("Your code's output: "+str(given[i]))
                 i += 1
+
+        elif tooLong:
+            tail = len(expected)
+            comparableGiven = given[0:tail]         ## makes given the same length as expected
+            leftOver = given[tail:]
+            eofMessage =["End of ouput" for i in range(len(leftOver))]
+            compare(expected, comparableGiven)
+            compare(eofMessage,leftOver)
+
+            
+        elif tooShort:
+            tail = len(given)
+            comparableExpected = expected[0:tail]       ## makes the expected output the same length as given
+            leftOver = expected[tail:]
+            eofMessage = ["End of output" for i in range(len(leftOver))]
+            compare(comparableExpected,given)
+            compare(leftover, eofMessage)
+
+
+
+
+
+
+
+
+
+
+        
 
 
 
@@ -131,40 +159,12 @@ class Checker(object):
 
                 else:
                     self.correctFlag = False
-                    
+                    self.compare(expected,given)
+                    i += 1
 
-                    lenDiff = len(expected) - len(given)
+                   
 
-                    tooLong = lenDiff < 0			## the given output is too long
-                    tooShort = lenDiff > 0			## the given output is too short
-
-                    if tooLong:
-                        tail = len(expected)
-                        comparableGiven = given[0:tail] 		## makes given the same length as expected
-                        leftOver = given[tail:]
-                        self.compare(expected,comparableGiven)					
-                        for line in leftOver:## the rest of given output
-                            self.set_diffDetails("Expected Output: End of Output  " )
-                            self.set_diffDetails("Your code's output:     "+  str(line))
-
-                        
-                        i += 1
-
-                    elif tooShort:
-                        tail = len(given)
-                        comparableExpected = expected[0:tail] 		## makes the expected output the same length as given
-                        leftOver = expected[tail:]					## the rest of the expected output
-
-                        self.compare(comparableExpected,given)
-
-                        for line in leftOver:
-                            self.set_diffDetails("Expected Output: "+ line)
-                            self.set_diffDetails("Your code's output:      ")
-                            i += 1
-
-                    else:
-                        self.compare(expected,given)
-                        i += 1
+                   
         
         self.set_message()
 
