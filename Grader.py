@@ -72,7 +72,7 @@ class Checker(object):
 
 
 
-    def compare(expected, given):
+    def compare(self, expected, given):
         """
         Takes two lists as args, compares the two line by line and appends diffrences
         to self.diffDetails to be displayed to the student
