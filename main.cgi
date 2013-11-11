@@ -3,7 +3,7 @@
 import cgi, os
 import cgitb; cgitb.enable()
 import Grader
-import Validator
+import Validate
 
 form = cgi.FieldStorage()
 
@@ -13,7 +13,7 @@ problem = form.getvalue('problem')
 studentid = form.getvalue('duckid')
 # Test if the file was uploaded
 
-validator = validator()
+validator = Validate.validator()
 message = []
 details =[]
 
