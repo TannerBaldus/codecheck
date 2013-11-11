@@ -14,34 +14,29 @@ studentid = form.getvalue('duckid')
 # Test if the file was uploaded
 
 validator = validator()
+message = []
+details =[]
 
 if fileitem.filename:
    # strip leading path from file name to avoid 
    # directory traversal attacks
    fn = studentid+os.path.basename(fileitem.filename)
-         details = C.diffDetails
-         
-      else:
-         details = C.diffDetails
-         
-      else:
-   if validator.checkFile(fn):
-      if validator.checkID(studentid):
+   if validator.checkFile(fn): ## check to make sure file contains .py
+      if validator.checkID(studentid): ##check to makesure that duckid is int he class
          open('/tmp/' + fn, 'wb').write(fileitem.file.read())
          studentCode = "/tmp/"+fn
-         C = Grader.Checker(studentid,problem,studentCode)
-         C.check()
+         C = Grader.Checker(studentid,problem,studentCode) ##initalize checker class
+         C.check() # check the student code
          message = C.message
          details = C.diffDetails
          
       else:
-         message = "That is not a valid duckid"
-
+         message = "That is not a valid duckid" ## if not valid ID let the student know
    else:
-      message = "That isn't a python file."
+      message = "That isn't a python file." ## if its not a python file the the student know
    
 else:
-   message = 'No file was uploaded'
+   message = 'No file was uploaded' ## if there wasn't a file uploaded let them know
    
 print 'Content-Type: text/html\n'
 print '<html>'
@@ -50,8 +45,9 @@ print '<body>'
 for line in message:
    print '<p>'+line+'</p>'
 
-for line in details:
-   print '<p>'+line+'</p>'
+if details:
+   for line in details:
+      print '<p>'+line+'</p>'
 
 print '</body>'
 print '</html>'

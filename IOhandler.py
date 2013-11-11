@@ -36,7 +36,7 @@ class IO:
         Uses lineReader to get number of cases from ProblemX/cases.txt file.
         """
         problem = "problems/"+"problem"+str(ProblemNumber)
-        casesFile = open(problem+"/cases/cases.txt","r")
+        casesFile = open(problem+"/cases.txt","r")
         cases = self.lineReader(casesFile,"int")
         return cases
 
@@ -45,9 +45,9 @@ class IO:
         Returns the expected output of a specfic test case.
         Uses lineReader to get the expected output from problemX/cases/caseX/output.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)
-        case = "/cases/case"+str(CaseNumber)
-        expectedFile = open(problem+case+"/output.txt",'r')
+        problem = "problems/"+"problem"+str(ProblemNumber)+"/"
+        filename = "output"+str(CaseNumber)+".txt"
+        expectedFile = open(problem+filename,'r')
         expected = self.lineReader(expectedFile,"list")
         return expected
 
@@ -56,9 +56,9 @@ class IO:
         Returns the input of a specfic test case.
         Uses lineReader to get the expected output from ProblemX/caseX/input.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)
-        case = "cases/case"+str(CaseNumber)
-        inputFile = open(problem+"/"+case+"/input.txt",'r')
+        problem = "problems/"+"problem"+str(ProblemNumber)+"/"
+        filename = "input"+str(CaseNumber)+".txt"
+        inputFile = open(problem+filename,'r')
         Input = self.lineReader(inputFile,"string")
         return Input
 
@@ -80,10 +80,10 @@ class IO:
         FullInput = "ulimit -t 2; python " + str(studentCode)
 
         ## Run student's code
-        proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
+        proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stdin = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
 
         ## Pass stdout and stderr to variables
-        rawOut = proc.communicate(input=TestInput)	## passes TestInput as std in; returns tuple (stdoutdata, stderrdata)
+        rawOut = proc.communicate(input=TestInput)	## passes TestInput as stdin; returns tuple (stdoutdata, stderrdata)
         stdout = rawOut[0].splitlines()
         stderr = rawOut[1].splitlines()
 
@@ -93,12 +93,9 @@ class IO:
 
 
         ## Put student's code into a list
-        i = 0
         for line in stdout:
             studentOut.append(line)
-            i += 1
-            ##if i > linelimit:
-                ##return result('loop',None)
+          
 
 
 
