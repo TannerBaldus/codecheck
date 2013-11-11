@@ -31,12 +31,12 @@ if fileitem.filename:
          details = C.diffDetails
          
       else:
-         message = "That is not a valid duckid" ## if not valid ID let the student know
+         message.append("That is not a valid duckid") ## if not valid ID let the student know
    else:
-      message = "That isn't a python file." ## if its not a python file the the student know
+      message.append("That isn't a python file.") ## if its not a python file the the student know
    
 else:
-   message = 'No file was uploaded' ## if there wasn't a file uploaded let them know
+   message.append('No file was uploaded') ## if there wasn't a file uploaded let them know
    
 print 'Content-Type: text/html\n'
 print '<html>'
