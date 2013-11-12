@@ -1,5 +1,9 @@
 import hashlib
 class validator:
+    """
+    Contains list of student ids as hashes. Has methods to validate if the student ID is in the
+    ID list and if the file is a python file. 
+    """
     def __init__(self):
         self.ids = ['76444fd8cae1ea9106925d5b230e5265',
     'cad293f29bdbe792462ccb7ab0f742ad',
@@ -122,12 +126,14 @@ class validator:
     '098f6bcd4621d373cade4e832627b4f6']
 
     def checkFile(self,filename):
+        """Returns True if the file is a python file, else False"""
         if ".py" in filename:
             return True
         else:
             return False
 
     def checkID(self,studentId):
+        """Returns True if the studentId is in the ID list, else False"""
         hasher = hashlib.md5(studentId)
         if hasher.hexdigest() in self.ids:
             return True

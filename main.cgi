@@ -8,7 +8,7 @@ import Validate
 form = cgi.FieldStorage()
 
 # Get filename.
-fileitem = form['filename']
+fileitem = form['filename'] 
 problem = form.getvalue('problem')
 studentid = form.getvalue('duckid')
 # Test if the file was uploaded

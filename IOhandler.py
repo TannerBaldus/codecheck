@@ -2,7 +2,7 @@ import subprocess as sub
 import collections
 class IO:
     """
-
+    Handles getting the inpout and output of test cases as well as runnning the student's code in a subprocess.
     """
 
     def lineReader(self, Input, type):
@@ -35,8 +35,8 @@ class IO:
         Returns the number of test cases for a given problem by traversing the directory.
         Uses lineReader to get number of cases from ProblemX/cases.txt file.
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)
-        casesFile = open(problem+"/cases.txt","r")
+        problem = "problems/"+"problem"+str(ProblemNumber) ##the problem number subdirectory
+        casesFile = open(problem+"/cases.txt","r") ##the cases.txt file for the problem number
         cases = self.lineReader(casesFile,"int")
         return cases
 
@@ -45,8 +45,8 @@ class IO:
         Returns the expected output of a specfic test case.
         Uses lineReader to get the expected output from problemX/cases/caseX/output.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)+"/"
-        filename = "output"+str(CaseNumber)+".txt"
+        problem = "problems/"+"problem"+str(ProblemNumber)+"/" ##the problem number subdirectory
+        filename = "output"+str(CaseNumber)+".txt"          ##the output.txt file for the case number
         expectedFile = open(problem+filename,'r')
         expected = self.lineReader(expectedFile,"list")
         return expected
@@ -56,8 +56,8 @@ class IO:
         Returns the input of a specfic test case.
         Uses lineReader to get the expected output from ProblemX/caseX/input.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)+"/"
-        filename = "input"+str(CaseNumber)+".txt"
+        problem = "problems/"+"problem"+str(ProblemNumber)+"/" ##the problem number subdirectory
+        filename = "input"+str(CaseNumber)+".txt"               ##the input.txt file for the case number
         inputFile = open(problem+filename,'r')
         Input = self.lineReader(inputFile,"string")
         return Input
@@ -77,7 +77,7 @@ class IO:
 
         """
 
-        FullInput = "ulimit -t 2; python " + str(studentCode)
+        FullInput = "ulimit -t 2; python " + str(studentCode) ##ulimit to prevent getting hung on inifinite loop.
 
         ## Run student's code
         proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stdin = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
@@ -99,12 +99,12 @@ class IO:
 
 
 
-        ## Put 	stderr message in a list
-        if stderr:
+        
+        if stderr: ## if there's an error put in in errorDetails
            
 
             for line in stderr:
-                errorDetails.append(str(line))
+                errorDetails.append(str(line)) ## Put   stderr message in a list
 
             if "Killed" in errorDetails:
                 ## Killed in stderr denotes that the student code exceeding cpu time limit
@@ -115,4 +115,4 @@ class IO:
 
 
         else:
-            return result("okay",studentOut)
+            return result("okay",studentOut) ## if no error the student's output is okay

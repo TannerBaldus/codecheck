@@ -1,0 +1,43 @@
+<style>
+
+@font-face {
+font-family: CodeBold;
+src: url("codeBold.otf") format("opentype");
+}
+
+@font-face {
+font-family: CodeLight;
+src: url("codeLold.otf") format("opentype");
+}
+
+h1 {
+  color : #65A530;
+  font-family : 'CodeBold';
+  font-size : 72;
+}
+h2 {
+  color : #215CB6;
+  fonr-family : 'CodeLight';
+  font-variant : small-caps;
+}
+</style>
+
+<body bgcolor = "#FFFFFF">
+<div align="center">
+
+
+<h1>CodeCheck</h1>
+  <form>
+
+     <b>Select Problem </b>
+    <select id="setit" style="color: #000000" size="1" name="test">
+    <option value="">Select one</option>
+        <option value="problem1.html">Problem 1</option>
+        <option value="problem2.html">Problem 2</option>
+        <option value="p3.html">Problem 3</option>
+        <input type="button" value="Go"
+    onclick="window.open(setit.options[setit.selectedIndex].value)">
+  </form>
+
+  </div>
+</body>
