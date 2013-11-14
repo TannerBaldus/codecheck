@@ -86,7 +86,14 @@ class Checker(object):
         Takes two lists as args, compares the two line by line and appends diffrences
         to self.diffDetails to be displayed to the student
 
-        If the given output is too long,  
+        If the given output is too long, Splits the given output into:
+        comparableGiven: the same length as expected 
+        leftover: the rest of given output
+        it then calls comparae on expected andcomparableGiven
+        and then compare on and end of file message(the same length) as leftover.
+
+        And vice versa when given is too short.
+
 
         """
         i = 0
