@@ -114,8 +114,8 @@ class Checker(object):
             comparableGiven = given[0:tail]         ## makes comparableGiven the same length as expected
             leftOver = given[tail:]
             eofMessage =["End of ouput" for i in range(len(leftOver))] ##create EOF message the size of leftover
-            compare(expected, comparableGiven)
-            compare(eofMessage,leftOver)
+            self.compare(expected, comparableGiven)
+            self.compare(eofMessage,leftOver)
 
             
         elif tooShort:
@@ -123,8 +123,8 @@ class Checker(object):
             comparableExpected = expected[0:tail]       ## makes the comparableExpected output the same length as given
             leftOver = expected[tail:]
             eofMessage = ["End of output" for i in range(len(leftOver))]
-            compare(comparableExpected,given)
-            compare(leftover, eofMessage)
+            self.compare(comparableExpected,given)
+            self.compare(leftOver, eofMessage)
 
 
 
