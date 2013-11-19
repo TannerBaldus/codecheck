@@ -50,31 +50,10 @@ class Board(object):
 
 
     def isCorrect(self,collection):
-        for c in collection:
-
-            if len(set(c)) != len(c):
-                assert len(set(c)) != len(c)
-                return False
-
-            total = 0
-            for tile in c:
-                total += tile.data
-
-                if tile.data not in range(1,4):
-                    assert tile.data not in range(1,4)
-                    return False
-
-            print(total)
-            if total !=6:
-                return False
-
-            return True
-
-
-
         ##FIXME return True if each group in the collection only contains the numbers
         ## 1,2,3 with no duplicates
         ##Else return False
+        
     def print_collection(self,collection):
         for group in collection:
             lst = [ e.data for e in group]
