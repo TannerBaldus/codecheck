@@ -50,6 +50,7 @@ class Board(object):
 
 
     def isCorrect(self,collection):
+        pass
         ##FIXME return True if each group in the collection only contains the numbers
         ## 1,2,3 with no duplicates
         ##Else return False
@@ -57,7 +58,7 @@ class Board(object):
     def print_collection(self,collection):
         for group in collection:
             lst = [ e.data for e in group]
-            print lst
+            print(lst)
 
     
     def check_board(self):
