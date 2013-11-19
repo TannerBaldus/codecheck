@@ -77,7 +77,7 @@ class IO:
 
         """
 
-        FullInput = "ulimit -t 2; python " + str(studentCode) ##ulimit to prevent getting hung on inifinite loop.
+        FullInput = "ulimit -t 2; python3 " + str(studentCode) ##ulimit to prevent getting hung on inifinite loop.
 
         ## Run student's code
         proc =  sub.Popen( FullInput, shell = True, stdout = sub.PIPE, stdin = sub.PIPE, stderr = sub.PIPE, universal_newlines = True)
