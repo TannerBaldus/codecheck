@@ -63,6 +63,7 @@ class Board(object):
                 if tile.data not in range(1,4):
                     assert tile.data not in range(1,4)
                     return False
+
             print(total)
             if total !=6:
                 return False
@@ -87,7 +88,7 @@ class Board(object):
             return "This is a valid board."
         
         else:
-            return "This is not a valid board"
+            return "This is not a valid board."
 
 
     
@@ -105,9 +106,6 @@ def main():
     input_tiles = [int(char) for char in stdin]
     b = Board(input_tiles)
     b.create_board()
-    b.print_collection(b.cols)
-    print("----------")
-    b.print_collection(b.rows)
     result = b.check_board()
     print(result)
     
