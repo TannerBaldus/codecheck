@@ -1,0 +1,9 @@
+Halving: 27
+Doubling: 44
+Halving: 13
+Doubling: 88
+Halving: 3
+Doubling: 352
+Halving: 1
+Doubling: 704
+Answer: 1188

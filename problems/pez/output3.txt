@@ -1,0 +1,11 @@
+Halving: 285
+Doubling: 100
+Halving: 71
+Doubling: 400
+Halving: 35
+Doubling: 800
+Halving: 17
+Doubling: 1600
+Halving: 1
+Doubling: 25600
+Answer: 28500
