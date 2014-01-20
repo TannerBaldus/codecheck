@@ -35,7 +35,7 @@ class IO:
         Returns the number of test cases for a given problem by traversing the directory.
         Uses lineReader to get number of cases from ProblemX/cases.txt file.
         """
-        problem = "problems/"+"problem"+str(ProblemNumber) ##the problem number subdirectory
+        problem = "problems/"+str(ProblemNumber) ##the problem number subdirectory
         casesFile = open(problem+"/cases.txt","r") ##the cases.txt file for the problem number
         cases = self.lineReader(casesFile,"int")
         return cases
@@ -45,7 +45,7 @@ class IO:
         Returns the expected output of a specfic test case.
         Uses lineReader to get the expected output from problemX/cases/caseX/output.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)+"/" ##the problem number subdirectory
+        problem = "problems/"+str(ProblemNumber)+"/" ##the problem number subdirectory
         filename = "output"+str(CaseNumber)+".txt"          ##the output.txt file for the case number
         expectedFile = open(problem+filename,'r')
         expected = self.lineReader(expectedFile,"list")
@@ -56,7 +56,7 @@ class IO:
         Returns the input of a specfic test case.
         Uses lineReader to get the expected output from ProblemX/caseX/input.txt file
         """
-        problem = "problems/"+"problem"+str(ProblemNumber)+"/" ##the problem number subdirectory
+        problem = "problems/"+str(ProblemNumber)+"/" ##the problem number subdirectory
         filename = "input"+str(CaseNumber)+".txt"               ##the input.txt file for the case number
         inputFile = open(problem+filename,'r')
         Input = self.lineReader(inputFile,"string")
