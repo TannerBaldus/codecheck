@@ -23,12 +23,12 @@ if fileitem.filename:
    fn = studentid+os.path.basename(fileitem.filename)
    if validator.checkFile(fn): ## check to make sure file contains .py
       if validator.checkID(studentid): ##check to makesure that duckid is int he class
-      open('/tmp/' + fn, 'wb').write(fileitem.file.read())
-      studentCode = "/tmp/"+fn
-      C = Grader.Checker(studentid,problem,studentCode) ##initalize checker class
-      C.check() # check the student code
-      message = C.message
-      details = C.diffDetails
+         open('/tmp/' + fn, 'wb').write(fileitem.file.read())
+         studentCode = "/tmp/"+fn
+         C = Grader.Checker(studentid,problem,studentCode) ##initalize checker class
+         C.check() # check the student code
+         message = C.message
+         details = C.diffDetails
          
        else:
          message.append("That is not a valid duckid") ## if not valid ID let the student know
