@@ -30,7 +30,7 @@ if fileitem.filename:
          message = C.message
          details = C.diffDetails
          
-       else:
+      else:
          message.append("That is not a valid duckid") ## if not valid ID let the student know
    else:
       message.append("That isn't a python file.") ## if its not a python file the the student know
