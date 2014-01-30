@@ -41,7 +41,7 @@ else:
 print 'Content-Type: text/html\n'
 print '<html>'
 print '<body>'
-print(problem)
+
 for line in message:
    print '<p>'+line+'</p>'
 
