@@ -11,14 +11,15 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
+    <link href="jansy-bootstrap/css/jasny-bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="jansy-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Fonts -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom Theme CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
+    <link href="css/problem.css" rel="stylesheet">
 
 </head>
 
@@ -33,53 +34,9 @@
                 <a class="navbar-brand" href="#home">
                      CODECHECK
                 </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li>
-                        <a href="#home"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#download">Download</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- /.navbar-collapse -->
-        </div>
         <!-- /.container -->
     </nav>
 
-    <section  class="intro">
-        <div id="home" class="intro-body">
-            <div class="container">
-                <div class="row">
-                        <h1 class="brand-heading">Choose A Problem</h1>
-                        <div class="col-md-4 col-md-offset-4 text-center">
-                            <div class="page-scroll">
-                                <select class="form-control" onchange="window.open(this.value,'','');">
-                                    <option value="one"><a class='opt' href="#one">One</a></option>
-                                    <option value="two">Two</option>
-                                    <option value="three">Three</option>
-                                    <option value="four">Four</option>
-                                    <option value="five">Five</option>
-                                </select>
-                            </div>
-
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <section>
@@ -91,12 +48,21 @@
                         <p>CodeCheck was created for CIS 210 at the University of Oregon.
                         It is an autograding software designed to reinforce CS concepts taught in the week's lecture.
                         Upon completion of a problem, CodeCheck will give you a token to turn in on Blackboard. </p>
+  
+                  <form enctype="multipart/form-data" action="cgi-bin/codecheck/main.cgi?problem=problemname" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter duckid (email w/o @uoregon)" name="duckid">
+                        <input type="file" name="filename">
+                      </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
 
 
