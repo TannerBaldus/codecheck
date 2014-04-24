@@ -20,7 +20,7 @@ src: url(../fonts/sourcecodepro/SourceCodePro-Regular.ttf);
 }
 
 
-p {
+.lead{
     font-family:Gandhi;
     margin: 0 0 25px;
     font-size: 18px;
@@ -60,6 +60,13 @@ a:focus {
     font-weight: 400;
     font-size: 2em;
     background-color: #000;
+}
+
+
+.intro {
+  padding: 80px 0;
+  background-color: white;
+  color: black;
 }
 
 .navbar-brand {
