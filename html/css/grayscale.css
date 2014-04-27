@@ -31,14 +31,6 @@ body {
 html {
     width: 100%;
     height: 100%;
-    /* This image will be displayed fullscreen */
-    /*background:url('../img/intro-bg.jpg') no-repeat center center;
-*/
-    /* Ensure the html element always takes up the full height of the browser window */
-    min-height:100%;
-
-    /* The Magic */
-    background-size:cover;
 }
 
 h1,
@@ -54,6 +46,10 @@ h6 {
     letter-spacing: 1px;
 }
 
+
+a{
+   font-family:Gandhi; 
+}
 p {
     font-family:Gandhi;
     margin: 0 0 25px;
@@ -156,6 +152,7 @@ a:focus {
     }
 }
 
+
 .intro {
     display: table;
     width: 100%;
@@ -164,14 +161,12 @@ a:focus {
     text-align: center;
     color: #fff;
     background: url(../img/uof.jpg) no-repeat bottom center scroll;
-   /* background-color: #000;*/
+    background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    min-height: 100%;
 }
-
 
 
 .about {
@@ -240,7 +235,7 @@ a:focus {
     -webkit-transition-duration: 1s;
     -moz-transition-property: -moz-transform;
     -moz-transition-duration: 1s;
-    font-family: Mohave;
+    font-family: Gandhi;
 }
 
 .page-scroll .btn-circle:hover i.animated {
@@ -328,30 +323,30 @@ a:focus {
 
 .btn {
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Gandhi;
     font-weight: 400;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
 
-.btn-default {
-    border: 1px solid #28c3ab;
-    color: #28c3ab;
-    background-color: transparent;
+.form-control{
+    font-family: Gandhi;
 }
 
-.btn-default:hover,
+
+/*.btn-default:hover,
 .btn-default:focus {
     border: 1px solid #28c3ab;
     outline: 0;
     color: #000;
     background-color: #28c3ab;
-}
+}*/
 
 .btn-huge {
     padding: 25px;
     font-size: 26px;
+     width: 20em;  
 }
 
 .banner-social-buttons {
