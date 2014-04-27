@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +40,7 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="page-scroll">
+                        <a href="#description">About</a>
                     </li>
                 </ul>
             </div>
@@ -56,19 +56,19 @@
                 <div class="row">
                         <div class="col-md-12">
 
-                        	 <p>You are tasked with dertermining if it there is a route between
-							two cities in Middle Earth. You are givena dictonary where
-							each key is a city and the values are the nieghbors of that city:
-							<br>For example:
-							<br>    IthilianCrossroads': ['CrossingsofPoros', 'NorthBorderIthilien', 'EmenArnen']<br></p>
+                             <p>You are tasked with dertermining if it there is a route between
+                            two cities in Middle Earth. You are givena dictonary where
+                            each key is a city and the values are the nieghbors of that city:
+                            <br>For example:
+                            <br>    IthilianCrossroads': ['CrossingsofPoros', 'NorthBorderIthilien', 'EmenArnen']<br></p>
 
-					<p>Implement a recusrive solution that will visit every city that is somehow connected to
-					the start city and record each city visited into a dictonary. If the end city is one of the
-					visited we know that there is some route to the end city. Otherwise there is not.
-					Use the skeleton code <a href="../skeletons/lotr.py">here</a> </p>
+                    <p>Implement a recusrive solution that will visit every city that is somehow connected to
+                    the start city and record each city visited into a dictonary. If the end city is one of the
+                    visited we know that there is some route to the end city. Otherwise there is not.
+                    Use the skeleton code <a href="../skeletons/lotr.py">here</a> </p>
 
 
-                <form enctype="multipart/form-data" action="../cgi-bin/codecheck/src/main.cgi?problem=lotr" method="post">
+                    <form enctype="multipart/form-data" action="../../cgi-bin/codecheck/src/main.cgi?problem=pez" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Enter duckid (email w/o @uoregon)" name="duckid">
                         <input type="file" name="filename">
@@ -76,15 +76,12 @@
                       <button type="submit" class="btn btn-default">Submit</button>
                   </form>
 
-        </div>   
-
-
-                            </div>
-
                         </div>
                 </div>
-            </div>
+
         </div>
+    </div>
+
     </section>
 
 
