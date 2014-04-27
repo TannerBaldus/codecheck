@@ -1,0 +1,5 @@
+Halving: 5
+Doubling: 22
+Halving: 1
+Doubling: 88
+Answer: 110

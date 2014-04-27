@@ -1,0 +1,5 @@
+Halving: 3
+Doubling: 0
+Halving: 1
+Doubling: 0
+Answer: 0
